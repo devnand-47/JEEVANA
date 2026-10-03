@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #012F29;
+  --jeevana-green: #025346; 
+  --jeevana-lime: #BCD530;
+  --jeevana-leaf: #61BB46;
+  --jeevana-dark: #012F29;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-jeevana-green: var(--jeevana-green);
+  --color-jeevana-lime: var(--jeevana-lime);
+  --color-jeevana-leaf: var(--jeevana-leaf);
+  --color-jeevana-dark: var(--jeevana-dark);
+  --color-jeevana-accent: var(--jeevana-lime); /* alias for existing usage */
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+    line-height: 1.75;
+  }
+}
+
+/* Base utility classes for smooth scroll and architectural grid */
+.bg-grid {
+  background-size: 60px 60px;
+  background-image: linear-gradient(to right, rgba(17,54,38,0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(17,54,38,0.05) 1px, transparent 1px);
+}
+.bg-grid-dark {
+  background-size: 60px 60px;
+  background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Marquee Animations */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 50s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.hover-pause:hover .animate-marquee,
+.hover-pause:hover .animate-marquee-reverse {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none;
+    transform: none;
+  }
+}
+
