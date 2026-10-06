@@ -71,17 +71,23 @@ export default function HorizontalProjects() {
                 }}
               >
                 <Link href={`/projects/${project.id}`} className="block group relative">
-                  <div className="relative aspect-[4/5] md:aspect-square w-full overflow-hidden bg-gray-900 mb-6">
-                    <Image 
-                      src={project.image} 
-                      alt={project.title} 
-                      fill 
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                      className="object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
-                    />
-                    <div className="absolute top-4 left-4 bg-jeevana-lime text-jeevana-dark text-[10px] font-bold tracking-widest uppercase px-3 py-1 shadow-sm">
-                      Conceptual Visualization
-                    </div>
+                  <div className="relative aspect-[4/5] md:aspect-square w-full overflow-hidden bg-gray-900 mb-6 flex flex-col items-center justify-center">
+                    {project.image ? (
+                      <>
+                        <Image 
+                          src={project.image} 
+                          alt={project.title} 
+                          fill 
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                          className="object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
+                        />
+                        <div className="absolute top-4 left-4 bg-jeevana-lime text-jeevana-dark text-[10px] font-bold tracking-widest uppercase px-3 py-1 shadow-sm">
+                          Conceptual Visualization
+                        </div>
+                      </>
+                    ) : (
+                      <span className="text-gray-500 text-xs tracking-widest uppercase font-medium">Coming Soon</span>
+                    )}
                   </div>
                   
                   <div className="flex justify-between items-start">

@@ -81,7 +81,7 @@ export default function ProcessScroll() {
   // --- MOBILE RENDER ---
   if (isMobile) {
     return (
-      <section className="bg-white py-20 px-6">
+      <section ref={containerRef} className="bg-white py-20 px-6">
         <div className="mb-12">
           <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-jeevana-green font-bold mb-4 block">
             The Jeevana Way

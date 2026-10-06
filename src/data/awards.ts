@@ -4,6 +4,7 @@ export interface AwardData {
   title: string;
   description: string;
   image: string;
+  supportingImages?: string[];
 }
 
 export const awardsData: AwardData[] = [
@@ -13,6 +14,10 @@ export const awardsData: AwardData[] = [
     title: "Historic Kaipram Juma Masjid Inauguration Ceremony",
     description: "A proud moment from the historic Kaipram Juma Masjid inauguration ceremony.",
     image: "/images/awards/Awards 1.jpeg",
+    supportingImages: [
+      "/images/awards/new-image-1.jpeg",
+      "/images/awards/new-image-2.jpeg"
+    ]
   },
   {
     id: "02",

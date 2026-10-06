@@ -1,7 +1,7 @@
 import Hero from "@/components/ui/Hero";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Marquee from "@/components/ui/Marquee";
-import HorizontalProjects from "@/components/ui/HorizontalProjects";
+import ProjectShowcase from "@/components/ui/ProjectShowcase";
 import HorizontalServices from "@/components/ui/HorizontalServices";
 import ProcessScroll from "@/components/ui/ProcessScroll";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
@@ -78,7 +78,7 @@ export default function Home() {
       </section>
 
       {/* 04 PROJECT SHOWCASE */}
-      <HorizontalProjects />
+      <ProjectShowcase />
 
       {/* 05 INFINITE PROJECT MARQUEE */}
       <div className="bg-jeevana-dark py-8 border-t border-white/5 overflow-hidden">
@@ -87,14 +87,18 @@ export default function Home() {
           className="py-4"
           itemClassName="px-4"
           items={marqueeProjects.map((p) => (
-            <div key={p.id} className="relative w-64 h-40 md:w-80 md:h-52 bg-gray-900 group overflow-hidden">
-              <Image 
-                src={p.image} 
-                alt={p.title} 
-                fill 
-                sizes="(max-width: 768px) 256px, 320px"
-                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100" 
-              />
+            <div key={p.id} className="relative w-64 h-40 md:w-80 md:h-52 bg-white group overflow-hidden flex items-center justify-center text-center p-4 border border-gray-200 shadow-sm">
+              {p.image ? (
+                <Image 
+                  src={p.image} 
+                  alt={p.title} 
+                  fill 
+                  sizes="(max-width: 768px) 256px, 320px"
+                  className="object-contain p-2 transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" 
+                />
+              ) : (
+                <span className="text-gray-500 text-[10px] tracking-widest uppercase">Coming Soon</span>
+              )}
             </div>
           ))}
         />

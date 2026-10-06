@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { projectsData } from "@/data/projects";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import ProjectGalleryClient from "@/components/ui/ProjectGalleryClient";
 
 export function generateStaticParams() {
   return projectsData.map((project) => ({
@@ -20,17 +21,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[600px] w-full bg-jeevana-dark flex items-end pb-20">
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src={project.image} 
-            alt={project.title} 
-            fill 
-            className="object-cover opacity-60 mix-blend-overlay" 
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-jeevana-dark via-jeevana-dark/50 to-transparent" />
-        </div>
+      <section className="relative pt-48 pb-20 w-full bg-jeevana-dark flex flex-col justify-end">
+        <div className="absolute inset-0 z-0 bg-grid-dark opacity-10" />
         
         <div className="container mx-auto px-6 relative z-10 text-white">
           <ScrollReveal>
@@ -132,7 +124,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                   <ul className="space-y-6">
                     <li className="pb-6 border-b border-gray-200">
                       <p className="text-xs tracking-widest text-gray-400 uppercase mb-1">Client / Owner</p>
-                      <p className="font-medium text-jeevana-dark">Private</p>
+                      <p className="font-medium text-jeevana-dark">{project.client || "Private"}</p>
                     </li>
                     <li className="pb-6 border-b border-gray-200">
                       <p className="text-xs tracking-widest text-gray-400 uppercase mb-1">Contractor</p>
@@ -151,29 +143,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       </section>
 
       {/* Gallery Section */}
-      {project.gallery && project.gallery.length > 0 && (
-        <section className="py-24 bg-gray-100">
-          <div className="container mx-auto px-6">
-            <ScrollReveal>
-              <h2 className="font-display text-3xl font-bold text-jeevana-dark mb-12">GALLERY</h2>
-            </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {project.gallery.map((image, index) => (
-                <ScrollReveal key={index} delay={(index % 2) * 0.1}>
-                  <div className="relative aspect-video w-full overflow-hidden bg-gray-300">
-                    <Image 
-                      src={image} 
-                      alt={`${project.title} gallery image ${index + 1}`} 
-                      fill 
-                      className="object-cover hover:scale-105 transition-transform duration-700" 
-                    />
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <ProjectGalleryClient project={project} />
     </>
   );
 }
